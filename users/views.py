@@ -9,7 +9,6 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import UserProfileUpdateForm
 from .forms import CustomAuthenticationForm
 from .forms import CustomUserCreationForm
 from users.models import User

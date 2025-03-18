@@ -43,15 +43,3 @@ class CustomUserCreationForm(UserCreationForm):
         return email
 
 
-class UserProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'profil_image', 'bio', 'phone']
-        widgets = {
-            'bio': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Écrivez quelque chose sur vous...'}),
-        }
-
-    def __init__(self, *args, **kwargs):
-        super(UserProfileUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['first_name'].required = True
-        self.fields['last_name'].required = True
