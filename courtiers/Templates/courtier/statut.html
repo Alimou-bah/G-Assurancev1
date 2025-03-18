@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carte de Supervision</title>
+    <link href="{% static 'css/statut.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="card">
+      <div class="logos">
+        <img src="{% static 'image/symbol.jpg' %}" alt="gg" />
+        <img src="{% static 'image/brading.jpg' %}" alt="gg" />
+        <img src="{% static 'image/bcrg.jpg' %}" alt="BCRG" />
+      </div>
+      <div class="title">
+        DIRECTION GÉNÉRALE DE LA SUPERVISION DES INSTITUTIONS FINANCIÈRES
+      </div>
+      <div class="title">DIRECTION DE LA SUPERVISION DES ASSURANCES</div>
+      <!-- <div class="status">  {{ agent.statut }} </div> -->
+      <span
+        class="badge {% if agent.statut == 'RETIRE' %}badge-retire{% elif agent.statut == 'EN REGLE' %}badge-en-regle{% elif agent.statut == 'SUSPENDU' %}badge-suspendu{% endif %}"
+        ><style>
+          .badge {
+            font-size: 35px;
+            font-weight: bold;
+            /* border-radius: 6%; */
+            color: white; /* Couleur du texte uniforme */
+            display: block;
+          }
+          .badge-retire {
+            background-color: red;
+          }
+          .badge-en-regle {
+            background-color: rgb(5, 150, 5);
+          }
+          .badge-suspendu {
+            background-color: rgb(206, 206, 7);
+          }
+        </style>
+        {{ courtier.statut }}
+      </span>
+      <div class="col-md-4">
+        <td scope="row">
+          {% if courtier.photo_profil %}
+          <img
+            src="{{ courtier.photo_profil.url }}"
+            class="card-img-top img-fluid"
+            style="width: 130px; height: 150px; object-fit: cover"
+            alt="Images"
+          />
+          {% else %}
+          <img
+            src=""
+            class="card-img-top img-fluid"
+            style="width: 500px; height: 50px; object-fit: cover"
+            alt="Image par défaut"
+          />
+          {% endif %}
+        </td>
+      </div>
+      <div class="info">N°:{{courtier.matricule}}</div>
+      <div class="info">{{courtier.prenom}} {{agent.nom}}</div>
+      <div
+        class="subtitle"
+        style="font-size: 22px; color: #1d04a8; font-weight: bold"
+      >
+        COURTIER
+      </div>
+      <div class="info">
+        ETABLISSEMENT:
+        <td scope="row">{{courtier.etablissement}}</td>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+
+  /* STYLE DES BOUTONS */
+
+    .btn {
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 70px;
+      margin: 0 5px;
+      display: inline-block;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .view {
+      background: #31bacf;
+    }
+
+    .edit {
+      background: #5b91d6;
+    }
+
+    .delete {
+      background: #ec4556;
+    }
+
+    .btn:hover {
+      opacity: 0.8;
+    }
+
+    /* La ligne */
+  .line {
+      width: 100%;  /* La ligne fait toute la largeur */
+      position: absolute;
+      top: 8%;  /* Centré verticalement */
+      animation: moveLine 30s linear infinite;  /* Applique l'animation */
+      animation-delay: 1ms;
+     
+  }
+
+  /* Animation de la ligne qui bascule horizontalement */
+  @keyframes moveLine {
+      0% {
+          right: -100%;  /* Départ en dehors de l'écran à gauche */
+      }
+      50% {
+          right: 50%;  /* La ligne est centrée à 50% de la largeur */
+      }
+      100% {
+          left: 100%;  /* La ligne se déplace complètement à droite */
+      }
+    }
+  .badge-retire {
+    background-color: red;
+}
+  .badge-en-regle {
+    background-color: rgb(107, 226, 107);
+}
+  .badge-suspendu {
+    background-color: rgb(243, 243, 6);
+}
+.badge {
+    color:black /* Couleur du texte uniforme */}
+

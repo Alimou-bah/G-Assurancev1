@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Ajout</title>
+    <link href="{% static 'css/ajouts.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="formbold-main-wrapper">
+      <!-- Author: FormBold Team -->
+      <!-- Learn More: https://formbold.com -->
+      <div class="formbold-form-wrapper">
+        <img src="{% static 'image/bcrg.jpg'%}" class="image" />
+        <img src="{% static 'image/brading.jpg'%}" class="brading" />
+        <img src="{% static 'image/symbol.jpg'%}" class="symbol" />
+        {% if messages %}
+        <div>
+          {% for message in messages %}
+          <p style="color: red">{{ message }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <form
+          action="{% url 'ajout_courtier' %}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <br />
+          <div class="formbold-input-flex">
+            <div>
+              <label for="firstname" class="formbold-form-label">
+                Prenom
+              </label>
+              <input
+                type="text"
+                name="prenom"
+                value="{{ prenom|default_if_none:'' }}"
+                id="prenom"
+                class="formbold-form-input"
+              />
+            </div>
+
+            <div>
+              <label for="lastname" class="formbold-form-label"> Nom </label>
+              <input
+                type="text"
+                name="nom"
+                value="{{ nom|default_if_none:'' }}"
+                id="nom"
+                class="formbold-form-input"
+              />
+            </div>
+          </div>
+
+          <div class="formbold-input-flex">
+            <div>
+              <label for="lastname" class="formbold-form-label"> Statut </label>
+              <select
+                id="statut"
+                name="statut"
+                required
+                class="formbold-form-input"
+              >
+                <option value="">Sélectionnez le statut</option>
+                <option value="EN REGLE">EN REGELE</option>
+                <option value="SUSPENDU">SUSPENDU</option>
+                <option value="RETIRE">RETIRE</option>
+              </select>
+            </div>
+            <div>
+              <label for="Agrement" class="formbold-form-label">
+                Agrément
+              </label>
+              <input
+                type="text"
+                name="Agrement"
+                value="{{ Agrement|default_if_none:'' }}"
+                id="Agrement"
+                class="formbold-form-input"
+              />
+            </div>
+          </div>
+
+          <div class="formbold-input-flex">
+            <div>
+              <label for="firstname" class="formbold-form-label">
+                Etablissement
+              </label>
+              <input
+                type="text"
+                name="etablissement"
+                id="etablissement"
+                value="{{ etablissement|default_if_none:'' }}"
+                class="formbold-form-input"
+              />
+            </div>
+            <div>
+              <label for="lastname" class="formbold-form-label">
+                Adresse
+              </label>
+              <input
+                type="text"
+                name="adresse"
+                value="{{ adresse|default_if_none:'' }}"
+                id="adresse"
+                class="formbold-form-input"
+              />
+            </div>
+          </div>
+
+          <div class="formbold-input-flex">
+            <div>
+              <label for="carte" class="formbold-form-label">
+                Numéro Carte
+              </label>
+              <input
+                type="text"
+                name="carte"
+                value="{{ carte|default_if_none:'' }}"
+                id="carte"
+                class="formbold-form-input"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="formbold-form-label"> Email </label>
+              <input
+                type="email"
+                name="email"
+                value="{{ email|default_if_none:'' }}"
+                id="email"
+                class="formbold-form-input"
+              />
+            </div>
+          </div>
+          <div class="formbold-input-flex">
+            <div>
+              <label for="state" class="formbold-form-label">
+                Date d'ajout
+              </label>
+              <input
+                type="date"
+                id="date"
+                value="{{ date|default_if_none:'' }}"
+                name="date"
+                required
+                class="formbold-form-input"
+              />
+            </div>
+            <div>
+              <label for="country" class="formbold-form-label">
+                Date d'expiration
+              </label>
+              <input
+                type="date"
+                id="date_expire"
+                name="date_expire"
+                value="{{ date_expire|default_if_none:'' }}"
+                required
+                class="formbold-form-input"
+              />
+            </div>
+          </div>
+          <div class="formbold-input-flex">
+            <div>
+              <label for="phone" class="formbold-form-label"> Télephone </label>
+              <input
+                type="text"
+                name="phone"
+                id="phone"
+                value="{{ phone|default_if_none:'' }}"
+                class="formbold-form-input"
+              />
+            </div>
+            <div class="formbold-mb-3">
+              <label for="address2" class="formbold-form-label"> Image </label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                required
+                class="formbold-form-input"
+              />
+            </div>
+          </div>
+          <button class="formbold-btn">Enrégistrer</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

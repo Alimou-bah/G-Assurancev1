@@ -1,0 +1,213 @@
+<div class="row my-4">
+    <div class="col-lg-12 col-12">
+      <div class="custom-block bg-white">
+      {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+      {% endif %}
+        <h5 class="mb-2" style="text-align: center;">Gestion des agents d'assurance</h5>
+
+        <div class="table-responsive">
+          <table class="account-table table">
+            <thead>
+              <tr>
+                <th scope="col">Matricule</th>
+
+                <th scope="col">Prénom</th>
+
+                <th scope="col">Nom</th>
+
+                <th scope="col">Etablissement</th>
+
+                <th scope="col">Date de création</th>
+
+                <th scope="col">Date d'expiration</th>
+
+                <th scope="col">Photo</th>
+
+                <th scope="col">Etat</th>
+
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            {% for agent in agents %}
+            <tbody>
+              <tr>
+                <td scope="row">{{agent.matricule}}</td>
+
+                <td scope="row">{{agent.Prenom}}</td>
+
+                <td scope="row">{{agent.Nom}}</td>
+
+                <td scope="row">{{agent.etablissement}}</td>
+
+                <td scope="row">{{agent.date}}</td>
+
+                <td class="text-danger" scope="row">
+                  {{agent.date_expire}}
+                </td>
+                <div class="col-md-4">
+                  <td scope="row">
+                    {% if agent.photo_profil %}
+                    <img
+                      src="{{ agent.photo_profil.url }}"
+                      class="card-img-top img-fluid"
+                      style="
+                        width: 50px;
+                        height: 50px;
+                        object-fit: cover;
+                      "
+                      alt="Images"
+                    />
+                    {% else %}
+                    <img
+                      src=""
+                      class="card-img-top img-fluid"
+                      style="
+                        width: 500px;
+                        height: 50px;
+                        object-fit: cover;
+                      "
+                      alt="Image"
+                    />
+                    {% endif %}
+                  </td>
+                </div>
+                <td scope="row">
+                 <span class="badge 
+                  {% if agent.statut == 'RETIRE' %}badge-retire{% elif agent.statut == 'EN REGLE' %}badge-en-regle{% elif agent.statut == 'SUSPENDU' %}badge-suspendu{% endif %}" 
+                   style="font-size: 0.90rem;">
+                    {{ agent.statut }}
+                </span>
+                </td>
+
+
+                <td scope="row">
+                  <a href="{% url 'agent_statuts' agent.id %}" class="btn view" title="Voir"
+                    ><i class="fas fa-eye"></i
+                  ></a>
+                  <a href="{% url 'agent_update' agent.id %}" class="btn edit" title="Modifier"
+                    ><i class="fas fa-edit"></i
+                  ></a>
+                  
+                  <!-- <a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ agent.id }}')">
+                    <i class="fas fa-trash-alt"></i>
+                </a> -->
+                </td>
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
+        </div>
+
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center mb-0">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">Prev</span>
+              </a>
+            </li>
+
+            <li class="page-item active" aria-current="page">
+              <a class="page-link" href="#">1</a>
+            </li>
+
+            <li class="page-item">
+              <a class="page-link" href="#">2</a>
+            </li>
+
+            <li class="page-item">
+              <a class="page-link" href="#">3</a>
+            </li>
+
+            <li class="page-item">
+              <a class="page-link" href="#">4</a>
+            </li>
+
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    </div>
+  </div>
+  <script>
+    //Function de suppression d'un agent
+    function confirmDelete(agentId) {
+    Swal.fire({
+        title: "Êtes-vous sûr de vouloir supprimer cet agent ?",
+        text: "Cette action est irréversible !",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Oui, supprimer",
+        cancelButtonText: "Annuler"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "{% url 'agent_supprimer' 0 %}".replace('0', agentId), // Utilisation de agentId
+                type: "POST",
+                headers: {
+                    "X-CSRFToken": '{{ csrf_token }}'
+                },
+                
+                data: {},
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire(
+                            'Supprimé !',
+                            response.message,
+                            'success'
+                        ).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire(
+                            'Erreur',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire(
+                        'Erreur',
+                        "Une erreur s'est produite lors de la suppression de l'agent.",
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+}
+
+    //Function de modification d'un article 
+
+    function updateArticle(articleId) {
+Swal.fire({
+    title: "Voudriez-vous modifier cet agent ?",
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: "Modifier",
+    denyButtonText: `Ne pas modifier`
+}).then((result) => {
+    if (result.isConfirmed) {
+        // Rediriger vers la page de modification
+        window.location.href = "{% url 'agent_update' 0 %}".replace('0', articleId);
+    } else if (result.isDenied) {
+        Swal.fire("Modification non apportée", "", "info");
+    }
+});
+}
+</script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mise à jour de l'agent</title>
+    <!-- <link href="{% static 'css/update.css' %}" rel="stylesheet" /> -->
+  </head>
+  <body>
+    <div class="formbold-main-wrapper">
+      <div class="formbold-form-wrapper">
+        <img src="{% static 'image/bcrg.jpg' %}" class="image" />
+        <img src="{% static 'image/brading.jpg' %}" class="brading" />
+        <img src="{% static 'image/symbol.jpg' %}" class="symbol" />
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %} {{ form.as_p }}
+          <button class="formbold-btn" type="submit">Mettre à jour</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  /* Style général */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Décommenté pour centrer verticalement */
+    height: 150vh;
+    margin: 0;
+    padding: O;
+    font-size: 15px;
+  }
+
+  /* Conteneur principal */
+  .formbold-main-wrapper {
+    width: 100%; /* Corrigé de 800% à 100% */
+    max-width: 600px;
+    background: white;
+    padding: 80px;
+    border-radius: 10px; /* Ajouté pour un bord arrondi */
+    box-shadow: 0px 0px 10px rgba(183, 6, 6, 0.1);
+  }
+
+  /* En-tête avec logos */
+  .formbold-form-wrapper {
+    text-align: left;
+    position: relative;
+    color: rgb(16, 167, 178);
+  }
+
+  .image,
+  .brading,
+  .symbol {
+    width: 10px;
+    margin: 5px;
+  }
+
+  .brading {
+    width: 10px;
+  }
+
+  .symbol {
+    width: 10px;
+    position: absolute;
+  }
+
+  /* Formulaire */
+  form {
+    margin-top: 5px; /* Augmenté pour un meilleur espacement */
+  }
+
+  /* Flexbox pour les champs de formulaire */
+  .formbold-input-flex {
+    display: flex;
+    margin-bottom: 15px;
+  }
+
+  /* Inputs */
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Décommenté pour des bords arrondis */
+    font-size: 16px; /* Réduit la taille de la police */
+  }
+
+  /* Labels */
+  label {
+    font-weight: bold;
+    display: block; /* Changement de contents à block pour une meilleure structure */
+    margin-bottom: 1px; /* Ajouté pour espacer le label de l'input */
+  }
+
+  /* Bouton */
+  .formbold-btn {
+    background-color: #6a5acd;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+    /* transition: background 0.3s; */
+  }
+
+  .formbold-btn:hover {
+    background-color: #5a4dbc;
+  }
+
+  /* Lien retour */
+  a {
+    display: inline-block;
+    margin-top: 15px; /* Augmenté pour un meilleur espacement */
+    text-decoration: none;
+    color: #6a5acd;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Ajustements spécifiques des images */
+  .image {
+    width: 80px;
+    height: 100px;
+  }
+
+  .brading {
+    width: 100px;
+    height: 100px;
+    margin-left: 180px; /* Ajusté pour s'assurer que l'élément ne chevauche pas */
+  }
+
+  .symbol {
+    width: 100px;
+    height: 100px;
+    margin-left: 160px; /* Ajusté pour éviter les chevauchements */
+  }
+</style>
