@@ -9,7 +9,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=30, verbose_name='Nom')
     last_name = models.CharField(max_length=30, verbose_name='Prénom')
     phone=models.IntegerField(verbose_name='Telephone', null=True, blank=True)
-    profil_image = models.ImageField(upload_to='photo',null=True,blank=True,verbose_name='photo de profil',)
+    profil_image = models.ImageField(upload_to='photo',null=True,blank=True,verbose_name='photo',)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
