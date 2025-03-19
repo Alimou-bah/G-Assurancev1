@@ -7,18 +7,18 @@ from .models import Courtier
 # Create your views here.
 class Ajout_courtier(CreateView):
     model=Courtier
-    template_name='courtier/ajouts.html'
+    template_name='courtiers/ajouts.html'
     success_url=reverse_lazy('liste_courtier')
 
 
 class List_courtier(ListView):
     model= Courtier
-    template_name='courtier/liste.html'
+    template_name='courtiers/liste.html'
     context_object_name='courtier'
 
 class Statut_courtier(DetailView):
     model=Courtier
-    template_name='courtier/statut.html'
+    template_name='courtiers/statut.html'
     context_object_name='courtier'
 
 def Ajouts(request):
@@ -64,16 +64,16 @@ def Ajouts(request):
             messages.success(request, "Courtier  ajouté avec succès !")
             return redirect('liste_courtier')
 
-    return render(request, "courtier/ajouts.html", context)
+    return render(request, "courtiers/ajouts.html", context)
 
 
 class CourtierUpdateView(UpdateView):
     model = Courtier
-    template_name = 'courtier/updatecourtier.html'
+    template_name = 'courtiers/updatecourtier.html'
     fields='__all__'
     success_url = reverse_lazy('liste_courtier')
 
 class Supcourtier(DeleteView):
     model = Courtier
-    template_name='courtier/courtier_confirm_delete.html'
+    template_name='courtiers/courtier_confirm_delete.html'
     success_url = reverse_lazy("liste_courtier")

@@ -1,28 +1,15 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}
-  <title>courtiers</title>
-{% endblock title %}
-
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>courtiers</title>
+{% endblock title %} {% block content %}
 <body>
-    
-
   <div class="container-fluid">
     <div class="row">
-
       <main
         class="main-wrapper col-md-9 ms-sm-auto py-1 col-lg-9 px-md-4 border-start"
       >
-        
-      {% include 'courtier/contenu_courtier.html' %}
+        {% include 'courtiers/contenu_courtier.html' %}
 
-       
-        <footer class="site-footer">
-         
-        </footer>
+        <footer class="site-footer"></footer>
       </main>
     </div>
   </div>
@@ -38,5 +25,3 @@
   />
 </body>
 {% endblock content %}
-
-
