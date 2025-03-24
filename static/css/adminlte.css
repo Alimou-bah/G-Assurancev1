@@ -1,0 +1,16 @@
+/* Style pour les icônes */
+.nav-icon {
+  margin-right: 10px;
+  font: size 100px;
+  vertical-align: middle;
+}
+
+/* Style pour les sous-menus */
+.nav-treeview {
+  padding-left: 30px;
+  display: none;
+}
+
+.nav-item.active .nav-treeview {
+  display: block;
+}

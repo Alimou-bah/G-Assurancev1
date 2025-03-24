@@ -1,0 +1,18 @@
+#sidebarMenu {
+  background-color: #03284d; /* Change la couleur ici */
+ 
+}
+
+.nav-link {
+  font-size: 1.2rem; /* Augmente la taille du texte */
+  font-weight: 800; /* Rendre le texte plus gras */
+ 
+}
+
+.nav-icon {
+  font-size: 1.5rem; /* Augmente la taille de l'icône */
+}
+
+.nav-arrow {
+  font-size: 1.5rem; /* Augmente la taille de la flèche */
+}

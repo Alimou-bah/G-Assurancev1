@@ -3,53 +3,62 @@
   <div class="position-sticky py-4 px-3 sidebar-sticky">
     <ul class="nav flex-column h-100">
       <li class="nav-item">
-        <a class="nav-link active" href="{% url 'list_agent' %}">
-          <i class="bi-wallet me-2"></i>
-          Liste des Agents
+        <a href="#" class="nav-link">
+          <i class="nav-icon bi bi-box-seam-fill me-2"></i>
+          AGENTS
+          <i class="nav-arrow bi bi-chevron-right"></i>
         </a>
-      </li>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'list_agent' %}" class="nav-link">
+              <i class="nav-icon bi bi-circle"></i>
+              Liste
+            </a>
+          </li>
 
+          <li class="nav-item">
+            <a href="{% url 'enregistrer' %}" class="nav-link">
+              <i class="nav-icon bi bi-circle"></i>
+              Ajouter
+            </a>
+          </li>
+          <!-- Autres éléments du sous-menu -->
+        </ul>
+      </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'liste_courtier' %}">
-          <i class="bi-wallet me-2"></i>
-          Liste des Coutiers
+        <a href="#" class="nav-link">
+          <i class="nav-icon bi bi-box-seam-fill me-2"></i>
+          COURTIERS
+          <i class="nav-arrow bi bi-chevron-right"></i>
         </a>
-      </li>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'liste_courtier' %}" class="nav-link">
+              <i class="nav-icon bi bi-circle"></i>
+              Liste
+            </a>
+          </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="">
-          <i class="bi-person me-2"></i>
-          Profile
-        </a>
+          <li class="nav-item">
+            <a href="{% url 'register' %}" class="nav-link">
+              <i class="nav-icon bi bi-circle"></i>
+              Ajouter
+            </a>
+          </li>
+          <!-- Autres éléments du sous-menu -->
+        </ul>
       </li>
-
       <li class="nav-item">
         <a class="nav-link" href="">
           <i class="bi-gear me-2"></i>
           Settings
         </a>
       </li>
-      {% if courtier %}
       <li class="nav-item featured-box mt-lg-3 mt-4 mb-4">
-        <a
-          class="btn custom-btn"
-          href="{% url 'ajout_courtier' %}"
-          style="background-color: #31bacf"
-        >
-          Ajouter</a
-        >
+        <a class="btn custom-btn" href="#" style="background-color: #31bacf">
+          Ajout controleur
+        </a>
       </li>
-      {% else %}
-      <li class="nav-item featured-box mt-lg-3 mt-4 mb-4">
-        <a
-          class="btn custom-btn"
-          href="{% url 'enregistrer' %}"
-          style="background-color: #31bacf"
-        >
-          Ajouter</a
-        >
-      </li>
-      {% endif %}
 
       <li class="nav-item border-top mt-auto pt-2">
         <a class="nav-link" href="{% url 'logout' %}">
@@ -60,3 +69,10 @@
     </ul>
   </div>
 </nav>
+<script>
+  document.querySelectorAll(".nav-item").forEach((item) => {
+    item.addEventListener("click", function () {
+      this.classList.toggle("active");
+    });
+  });
+</script>

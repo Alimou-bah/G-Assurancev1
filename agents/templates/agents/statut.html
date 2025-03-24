@@ -14,18 +14,26 @@
         <img src="{% static 'image/brading.jpg' %}" alt="gg" />
         <img src="{% static 'image/bcrg.jpg' %}" alt="BCRG" />
       </div>
+      <hr
+        class="ligne-horizontale"
+        style="
+          border: none;
+          height: 2px;
+          background-color: #333;
+          width: 100%;
+          margin: 20px auto;
+        "
+      />
       <div class="title">
         DIRECTION GÉNÉRALE DE LA SUPERVISION DES INSTITUTIONS FINANCIÈRES
       </div>
       <div class="title">DIRECTION DE LA SUPERVISION DES ASSURANCES</div>
-      <!-- <div class="status">  {{ agent.statut }} </div> -->
       <span
         class="badge {% if agent.statut == 'RETIRE' %}badge-retire{% elif agent.statut == 'EN REGLE' %}badge-en-regle{% elif agent.statut == 'SUSPENDU' %}badge-suspendu{% endif %}"
         ><style>
           .badge {
             font-size: 35px;
             font-weight: bold;
-            /* border-radius: 6%; */
             color: white; /* Couleur du texte uniforme */
             display: block;
           }
@@ -66,12 +74,13 @@
         class="subtitle"
         style="font-size: 22px; color: #1d04a8; font-weight: bold"
       >
-        AGENT
+        AGENT GENERAUX
       </div>
       <div class="info">
         ETABLISSEMENT:
         <td scope="row">{{agent.etablissement}}</td>
       </div>
+      <a href="#">Plus d'infos</a>
     </div>
   </body>
 </html>

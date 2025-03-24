@@ -2,9 +2,9 @@
     <div class="col-lg-12 col-12">
       <div class="custom-block bg-white">
         <h5 class="mb-2" style="text-align: center;">Gestion des courtiers d'assurance</h5>
-
         <div class="table-responsive">
           <table class="account-table table">
+          
             <thead>
               <tr>
                 <th scope="col">Matricule</th>
@@ -26,7 +26,7 @@
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            {% for courtier in courtier %}
+            {% for courtier in courtiers %}
             <tbody>
               <tr>
                 <td scope="row">{{courtier.matricule}}</td>
@@ -74,14 +74,16 @@
                   </td>
                 </div>
                 <td scope="row">
-                 <span class="badge 
-                  {% if courtier.statut == 'RETIRE' %}badge-retire{% elif courtier.statut == 'EN REGLE' %}badge-en-regle{% elif courtier.statut == 'SUSPENDU' %}badge-suspendu{% endif %}" 
-                   style="font-size: 0.90rem;">
+                  <span class="badge 
+                    {% if courtier.statut == 'RETIRE' %} bg-danger text-dark 
+                    {% elif courtier.statut == 'EN REGLE' %} bg-success text-dark 
+                    {% elif courtier.statut == 'SUSPENDU' %} bg-warning text-dark 
+                    {% endif %}" 
+                    style="font-size: 0.90rem;">
                     {{ courtier.statut }}
-                </span>
+                  </span>
                 </td>
-
-
+                
                 <td scope="row">
                   <a href="{% url 'courtier_status' courtier.id %}" class="btn view" title="Voir"
                     ><i class="fas fa-eye"></i
@@ -89,9 +91,7 @@
                   <a href="{% url 'courtier_update' courtier.id %}" class="btn edit" title="Modifier"
                     ><i class="fas fa-edit"></i
                   ></a>
-                  <!-- <a href="{% url 'courtier_supprimer' courtier.id %}" class="btn delete" title="Supprimer"
-                    ><i class="fas fa-trash"></i
-                  ></a> -->
+                 
                 </td>
               </tr>
             </tbody>
@@ -134,3 +134,14 @@
     </div>
     </div>
   </div>
+  <style>
+    .view {
+    background-color: #007bff; /* Bleu */
+    color: white;
+  }
+  
+  .edit {
+    background-color: #ffc107; /* Jaune */
+    color: white;
+  }
+   </style>

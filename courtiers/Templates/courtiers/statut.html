@@ -14,13 +14,24 @@
         <img src="{% static 'image/brading.jpg' %}" alt="gg" />
         <img src="{% static 'image/bcrg.jpg' %}" alt="BCRG" />
       </div>
+      <hr
+        class="ligne-horizontale"
+        style="
+          border: none;
+          height: 2px;
+          background-color: #333;
+          width: 100%;
+          margin: 20px auto;
+        "
+      />
+
       <div class="title">
         DIRECTION GÉNÉRALE DE LA SUPERVISION DES INSTITUTIONS FINANCIÈRES
       </div>
       <div class="title">DIRECTION DE LA SUPERVISION DES ASSURANCES</div>
       <!-- <div class="status">  {{ agent.statut }} </div> -->
       <span
-        class="badge {% if agent.statut == 'RETIRE' %}badge-retire{% elif agent.statut == 'EN REGLE' %}badge-en-regle{% elif agent.statut == 'SUSPENDU' %}badge-suspendu{% endif %}"
+        class="badge {% if courtiers.statut == 'RETIRE' %}badge-retire{% elif courtiers.statut == 'EN REGLE' %}badge-en-regle{% elif courtiers.statut == 'SUSPENDU' %}badge-suspendu{% endif %}"
         ><style>
           .badge {
             font-size: 35px;
@@ -39,13 +50,13 @@
             background-color: rgb(206, 206, 7);
           }
         </style>
-        {{ courtier.statut }}
+        {{ courtiers.statut }}
       </span>
       <div class="col-md-4">
         <td scope="row">
-          {% if courtier.photo_profil %}
+          {% if courtiers.photo_profil %}
           <img
-            src="{{ courtier.photo_profil.url }}"
+            src="{{ courtiers.photo_profil.url }}"
             class="card-img-top img-fluid"
             style="width: 130px; height: 150px; object-fit: cover"
             alt="Images"
@@ -60,8 +71,8 @@
           {% endif %}
         </td>
       </div>
-      <div class="info">N°:{{courtier.matricule}}</div>
-      <div class="info">{{courtier.prenom}} {{agent.nom}}</div>
+      <div class="info">N°:{{courtiers.matricule}}</div>
+      <div class="info">{{courtiers.prenom}} {{courtiers.nom}}</div>
       <div
         class="subtitle"
         style="font-size: 22px; color: #1d04a8; font-weight: bold"
@@ -70,8 +81,9 @@
       </div>
       <div class="info">
         ETABLISSEMENT:
-        <td scope="row">{{courtier.etablissement}}</td>
+        <td scope="row">{{courtiers.etablissement}}</td>
       </div>
+      <a href="#">Plus d'infos</a>
     </div>
   </body>
 </html>

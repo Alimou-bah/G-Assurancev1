@@ -1,23 +1,12 @@
 from dataclasses import fields
-from django.shortcuts import render,redirect,get_object_or_404
 from django.shortcuts import  redirect, render
 from django.urls import reverse_lazy
-from django.http import JsonResponse
 from django.contrib import messages
-from django.views import View
-from django.views.generic import DetailView, DeleteView, UpdateView, ListView
+from django.views.generic import DetailView, UpdateView, ListView
 
-import agents
 from .models import Agent
 
 # Create your views here.
-'''class Ajout_agent(CreateView):
-    model=Agent
-    template_name='agents/ajouts.html'
-    success_url=reverse_lazy('list_agent')
-    context_object_name='agent'''
-
-
 class List_agent(ListView):
     model= Agent
     template_name='agents/wallet.html'
@@ -82,16 +71,4 @@ class AgentUpdateView(UpdateView):
     fields='__all__'
     success_url = reverse_lazy('list_agent')
 
-
-class Supagent(View):
-    def post(self, request, *args, **kwargs ):
-        try:
-            agent_id =  kwargs.get(id=agent_id)
-            agent = get_object_or_404(Agent, id=agent_id)
-            agent.delete()
-            return JsonResponse({'success': True, 'message': "L'article a été supprimé avec succès."})
-        except Exception as e:
-            return JsonResponse({'success': False, 'message': "Une erreur s'est produite lors de la suppression de l'article."})
-        return JsonResponse({'success': False, 'message': "Requête invalide."})
-    
     

@@ -27,7 +27,7 @@
             text-decoration: underline;
           "
         >
-          Enregistrement agents
+          Enregistrement courtiers
         </h2>
         {% if messages %}
         <div>
@@ -36,9 +36,10 @@
           {% endfor %}
         </div>
         {% endif %}
+
         <form
-          action="{% url 'enregistrer' %}"
-          method="POST"
+          action="{% url 'register' %}"
+          method="post"
           enctype="multipart/form-data"
         >
           {% csrf_token %}
@@ -50,19 +51,20 @@
               </label>
               <input
                 type="text"
-                name="Prenom"
-                value="{{ Prenom|default_if_none:'' }}"
-                id="firstname"
+                name="prenom"
+                value="{{ prenom|default_if_none:'' }}"
+                id="prenom"
                 class="formbold-form-input"
               />
             </div>
+
             <div>
               <label for="lastname" class="formbold-form-label"> Nom </label>
               <input
                 type="text"
-                name="Nom"
-                value="{{ Nom|default_if_none:'' }}"
-                id="lastname"
+                name="nom"
+                value="{{ nom|default_if_none:'' }}"
+                id="nom"
                 class="formbold-form-input"
               />
             </div>
@@ -117,7 +119,7 @@
               <input
                 type="text"
                 name="adresse"
-                value="{{adresse|default_if_none:'' }}"
+                value="{{ adresse|default_if_none:'' }}"
                 id="adresse"
                 class="formbold-form-input"
               />
@@ -156,7 +158,7 @@
               </label>
               <input
                 type="date"
-                id="date_ajout"
+                id="date"
                 value="{{ date|default_if_none:'' }}"
                 name="date"
                 required
@@ -170,8 +172,8 @@
               <input
                 type="date"
                 id="date_expire"
-                value="{{ date_expire|default_if_none:'' }}"
                 name="date_expire"
+                value="{{ date_expire|default_if_none:'' }}"
                 required
                 class="formbold-form-input"
               />
@@ -183,8 +185,8 @@
               <input
                 type="text"
                 name="phone"
-                value="{{ phone|default_if_none:'' }}"
                 id="phone"
+                value="{{ phone|default_if_none:'' }}"
                 class="formbold-form-input"
               />
             </div>

@@ -1,27 +1,21 @@
 from django.shortcuts import  redirect, render
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.views.generic import DetailView, DeleteView, UpdateView, CreateView, ListView
+from django.views.generic import DetailView, UpdateView, ListView
 from .models import Courtier
 
 # Create your views here.
-class Ajout_courtier(CreateView):
+class liste_courtier(ListView):
     model=Courtier
-    template_name='courtiers/ajouts.html'
-    success_url=reverse_lazy('liste_courtier')
-
-
-class List_courtier(ListView):
-    model= Courtier
     template_name='courtiers/liste.html'
-    context_object_name='courtier'
+    context_object_name='courtiers'
 
 class Statut_courtier(DetailView):
     model=Courtier
     template_name='courtiers/statut.html'
-    context_object_name='courtier'
+    context_object_name='courtiers'
 
-def Ajouts(request):
+def Ajout(request):
     context = {}  # Stocker les valeurs du formulaire
 
     if request.method == "POST":
@@ -52,7 +46,7 @@ def Ajouts(request):
         elif Courtier.objects.filter(matricule=context['Agrement']).exists():
             messages.error(request, "Ce numéro d'agrément est déjà enregistré.")
         else:
-            # Création de l'agent
+            # Création de courtier
             Courtier.objects.create(
                 nom=context['nom'], prenom=context['prenom'],
                 matricule=context['Agrement'], numero_carte=context['carte'],
@@ -64,7 +58,7 @@ def Ajouts(request):
             messages.success(request, "Courtier  ajouté avec succès !")
             return redirect('liste_courtier')
 
-    return render(request, "courtiers/ajouts.html", context)
+    return render(request, "courtiers/ajoutcourtier.html", context)
 
 
 class CourtierUpdateView(UpdateView):
@@ -73,7 +67,4 @@ class CourtierUpdateView(UpdateView):
     fields='__all__'
     success_url = reverse_lazy('liste_courtier')
 
-class Supcourtier(DeleteView):
-    model = Courtier
-    template_name='courtiers/courtier_confirm_delete.html'
-    success_url = reverse_lazy("liste_courtier")
+

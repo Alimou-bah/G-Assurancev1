@@ -9,7 +9,7 @@
         {% endfor %}
       {% endif %}
         <h5 class="mb-2" style="text-align: center;">Gestion des agents d'assurance</h5>
-
+        
         <div class="table-responsive">
           <table class="account-table table">
             <thead>
@@ -77,14 +77,15 @@
                   </td>
                 </div>
                 <td scope="row">
-                 <span class="badge 
-                  {% if agent.statut == 'RETIRE' %}badge-retire{% elif agent.statut == 'EN REGLE' %}badge-en-regle{% elif agent.statut == 'SUSPENDU' %}badge-suspendu{% endif %}" 
-                   style="font-size: 0.90rem;">
+                  <span class="badge 
+                    {% if agent.statut == 'RETIRE' %} bg-danger text-dark
+                    {% elif agent.statut == 'EN REGLE' %} bg-success text-dark 
+                    {% elif agent.statut == 'SUSPENDU' %} bg-warning text-dark 
+                    {% endif %}" 
+                    style="font-size: 0.90rem;">
                     {{ agent.statut }}
-                </span>
+                  </span>
                 </td>
-
-
                 <td scope="row">
                   <a href="{% url 'agent_statuts' agent.id %}" class="btn view" title="Voir"
                     ><i class="fas fa-eye"></i
@@ -92,10 +93,6 @@
                   <a href="{% url 'agent_update' agent.id %}" class="btn edit" title="Modifier"
                     ><i class="fas fa-edit"></i
                   ></a>
-                  
-                  <!-- <a href="javascript:void(0);" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ agent.id }}')">
-                    <i class="fas fa-trash-alt"></i>
-                </a> -->
                 </td>
               </tr>
             </tbody>
@@ -138,76 +135,14 @@
     </div>
     </div>
   </div>
-  <script>
-    //Function de suppression d'un agent
-    function confirmDelete(agentId) {
-    Swal.fire({
-        title: "Êtes-vous sûr de vouloir supprimer cet agent ?",
-        text: "Cette action est irréversible !",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Oui, supprimer",
-        cancelButtonText: "Annuler"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: "{% url 'agent_supprimer' 0 %}".replace('0', agentId), // Utilisation de agentId
-                type: "POST",
-                headers: {
-                    "X-CSRFToken": '{{ csrf_token }}'
-                },
-                
-                data: {},
-                success: function(response) {
-                    if (response.success) {
-                        Swal.fire(
-                            'Supprimé !',
-                            response.message,
-                            'success'
-                        ).then(() => {
-                            location.reload();
-                        });
-                    } else {
-                        Swal.fire(
-                            'Erreur',
-                            response.message,
-                            'error'
-                        );
-                    }
-                },
-                error: function(xhr, status, error) {
-                    Swal.fire(
-                        'Erreur',
-                        "Une erreur s'est produite lors de la suppression de l'agent.",
-                        'error'
-                    );
-                }
-            });
-        }
-    });
+ <style>
+  .view {
+  background-color: #007bff; /* Bleu */
+  color: white;
 }
 
-    //Function de modification d'un article 
-
-    function updateArticle(articleId) {
-Swal.fire({
-    title: "Voudriez-vous modifier cet agent ?",
-    showDenyButton: true,
-    showCancelButton: true,
-    confirmButtonText: "Modifier",
-    denyButtonText: `Ne pas modifier`
-}).then((result) => {
-    if (result.isConfirmed) {
-        // Rediriger vers la page de modification
-        window.location.href = "{% url 'agent_update' 0 %}".replace('0', articleId);
-    } else if (result.isDenied) {
-        Swal.fire("Modification non apportée", "", "info");
-    }
-});
+.edit {
+  background-color: #ffc107; /* Jaune */
+  color: white;
 }
-</script>
-<!-- SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ </style>
