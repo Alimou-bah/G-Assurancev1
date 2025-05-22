@@ -49,14 +49,32 @@
         </ul>
       </li>
       <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon bi bi-box-seam-fill me-2"></i>
+          CONTROLEURS
+          <i class="nav-arrow bi bi-chevron-right"></i>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'list_controler'%}" class="nav-link">
+              <i class="nav-icon bi bi-circle"></i>
+              Liste
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'ajouter_controler' %}" class="nav-link">
+              <i class="nav-icon bi bi-circle"></i>
+              Ajouter
+            </a>
+          </li>
+          <!-- Autres éléments du sous-menu -->
+        </ul>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="">
           <i class="bi-gear me-2"></i>
           Settings
-        </a>
-      </li>
-      <li class="nav-item featured-box mt-lg-3 mt-4 mb-4">
-        <a class="btn custom-btn" href="#" style="background-color: #31bacf">
-          Ajout controleur
         </a>
       </li>
 

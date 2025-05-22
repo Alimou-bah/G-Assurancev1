@@ -3,36 +3,225 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <meta name="description" content="" />
     <meta name="author" content="" />
 
     <title>Ajout</title>
-    <link href="{% static 'css/ajouts.css' %}" rel="stylesheet" />
+    <style>
+      /* Reset et styles de base */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        line-height: 1.6;
+      }
+
+      /* Conteneur principal */
+      .formbold-main-wrapper {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      /* Conteneur du formulaire */
+      .formbold-form-wrapper {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 100%;
+        max-width: 900px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Images */
+      .image,
+      .brading,
+      .symbol {
+        position: absolute;
+        max-height: 80px;
+      }
+
+      .image {
+        top: 10px;
+        left: 10px;
+      }
+
+      .brading {
+        top: 10px;
+        right: 10px;
+      }
+
+      .symbol {
+        bottom: 10px;
+        right: 10px;
+      }
+
+      /* Titre */
+      h2 {
+        color: rgb(59, 59, 133);
+        text-align: center;
+        text-decoration: underline;
+        margin: 20px 0;
+        font-size: 1.5rem;
+      }
+
+      /* Messages d'erreur */
+      .error-message {
+        color: red;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      /* Formulaire */
+      form {
+        margin-top: 30px;
+      }
+
+      /* Conteneurs flex */
+      .formbold-input-flex {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .formbold-input-flex > div {
+        flex: 1 1 300px;
+      }
+
+      /* Labels */
+      .formbold-form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      /* Inputs */
+      .formbold-form-input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      .formbold-form-input:focus {
+        border-color: rgb(59, 59, 133);
+        outline: none;
+      }
+
+      select.formbold-form-input {
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 1em;
+      }
+
+      /* Bouton */
+      .formbold-btn {
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        margin: 30px auto 0;
+        padding: 12px;
+        background-color: rgb(59, 59, 133);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .formbold-btn:hover {
+        background-color: rgb(40, 40, 100);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .formbold-form-wrapper {
+          padding: 20px 15px;
+        }
+
+        .image,
+        .brading,
+        .symbol {
+          max-height: 60px;
+        }
+
+        h2 {
+          font-size: 1.3rem;
+          margin-top: 40px;
+        }
+
+        .formbold-input-flex {
+          gap: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .formbold-main-wrapper {
+          padding: 10px;
+        }
+
+        .image,
+        .brading,
+        .symbol {
+          max-height: 50px;
+        }
+
+        h2 {
+          font-size: 1.2rem;
+          margin: 50px 0 15px;
+        }
+
+        .formbold-form-input {
+          padding: 10px 12px;
+          font-size: 14px;
+        }
+
+        .formbold-btn {
+          max-width: 100%;
+          margin-top: 20px;
+        }
+      }
+    </style>
   </head>
 
   <body>
     <div class="formbold-main-wrapper">
-      <!-- Author: FormBold Team -->
-      <!-- Learn More: https://formbold.com -->
       <div class="formbold-form-wrapper">
-        <img src="{% static 'image/bcrg.jpg'%}" class="image" />
-        <img src="{% static 'image/brading.jpg'%}" class="brading" />
-        <img src="{% static 'image/symbol.jpg'%}" class="symbol" />
-        <h2
-          style="
-            color: rgb(59, 59, 133);
-            text-align: center;
-            text-decoration: underline;
-          "
-        >
-          Enregistrement agents
-        </h2>
+        <img src="{% static 'image/bcrg.jpg'%}" class="image" alt="Logo BCRG" />
+        <img
+          src="{% static 'image/brading.jpg'%}"
+          class="brading"
+          alt="Logo Branding"
+        />
+        <img
+          src="{% static 'image/symbol.jpg'%}"
+          class="symbol"
+          alt="Symbole"
+        />
+        <h2>Enregistrement agents</h2>
         {% if messages %}
-        <div>
+        <div class="error-message">
           {% for message in messages %}
-          <p style="color: red">{{ message }}</p>
+          <p>{{ message }}</p>
           {% endfor %}
         </div>
         {% endif %}
@@ -42,35 +231,34 @@
           enctype="multipart/form-data"
         >
           {% csrf_token %}
-          <br />
           <div class="formbold-input-flex">
             <div>
-              <label for="firstname" class="formbold-form-label">
-                Prenom
-              </label>
+              <label for="firstname" class="formbold-form-label">Prénom</label>
               <input
                 type="text"
                 name="Prenom"
                 value="{{ Prenom|default_if_none:'' }}"
                 id="firstname"
                 class="formbold-form-input"
+                required
               />
             </div>
             <div>
-              <label for="lastname" class="formbold-form-label"> Nom </label>
+              <label for="lastname" class="formbold-form-label">Nom</label>
               <input
                 type="text"
                 name="Nom"
                 value="{{ Nom|default_if_none:'' }}"
                 id="lastname"
                 class="formbold-form-input"
+                required
               />
             </div>
           </div>
 
           <div class="formbold-input-flex">
             <div>
-              <label for="lastname" class="formbold-form-label"> Statut </label>
+              <label for="statut" class="formbold-form-label">Statut</label>
               <select
                 id="statut"
                 name="statut"
@@ -78,68 +266,68 @@
                 class="formbold-form-input"
               >
                 <option value="">Sélectionnez le statut</option>
-                <option value="EN REGLE">EN REGELE</option>
+                <option value="EN REGLE">EN REGLE</option>
                 <option value="SUSPENDU">SUSPENDU</option>
                 <option value="RETIRE">RETIRE</option>
               </select>
             </div>
             <div>
-              <label for="Agrement" class="formbold-form-label">
-                Agrément
-              </label>
+              <label for="Agrement" class="formbold-form-label">Agrément</label>
               <input
                 type="text"
                 name="Agrement"
                 value="{{ Agrement|default_if_none:'' }}"
                 id="Agrement"
                 class="formbold-form-input"
+                required
               />
             </div>
           </div>
 
           <div class="formbold-input-flex">
             <div>
-              <label for="firstname" class="formbold-form-label">
-                Etablissement
-              </label>
+              <label for="etablissement" class="formbold-form-label"
+                >Etablissement</label
+              >
               <input
                 type="text"
                 name="etablissement"
                 id="etablissement"
                 value="{{ etablissement|default_if_none:'' }}"
                 class="formbold-form-input"
+                required
               />
             </div>
             <div>
-              <label for="lastname" class="formbold-form-label">
-                Adresse
-              </label>
+              <label for="adresse" class="formbold-form-label">Adresse</label>
               <input
                 type="text"
                 name="adresse"
                 value="{{adresse|default_if_none:'' }}"
                 id="adresse"
                 class="formbold-form-input"
+                required
               />
             </div>
           </div>
 
           <div class="formbold-input-flex">
             <div>
-              <label for="carte" class="formbold-form-label">
-                Numéro Carte
-              </label>
+              <label for="carte" class="formbold-form-label"
+                >Numéro Carte</label
+              >
               <input
                 type="text"
                 name="carte"
                 value="{{ carte|default_if_none:'' }}"
                 id="carte"
                 class="formbold-form-input"
+                required
               />
             </div>
 
             <div>
-              <label for="email" class="formbold-form-label"> Email </label>
+              <label for="email" class="formbold-form-label">Email</label>
               <input
                 type="email"
                 name="email"
@@ -149,11 +337,12 @@
               />
             </div>
           </div>
+
           <div class="formbold-input-flex">
             <div>
-              <label for="state" class="formbold-form-label">
-                Date d'ajout
-              </label>
+              <label for="date_ajout" class="formbold-form-label"
+                >Date d'ajout</label
+              >
               <input
                 type="date"
                 id="date_ajout"
@@ -164,9 +353,9 @@
               />
             </div>
             <div>
-              <label for="country" class="formbold-form-label">
-                Date d'expiration
-              </label>
+              <label for="date_expire" class="formbold-form-label"
+                >Date d'expiration</label
+              >
               <input
                 type="date"
                 id="date_expire"
@@ -177,19 +366,21 @@
               />
             </div>
           </div>
+
           <div class="formbold-input-flex">
             <div>
-              <label for="phone" class="formbold-form-label"> Télephone </label>
+              <label for="phone" class="formbold-form-label">Téléphone</label>
               <input
                 type="text"
                 name="phone"
                 value="{{ phone|default_if_none:'' }}"
                 id="phone"
                 class="formbold-form-input"
+                required
               />
             </div>
-            <div class="formbold-mb-3">
-              <label for="address2" class="formbold-form-label"> Image </label>
+            <div>
+              <label for="image" class="formbold-form-label">Image</label>
               <input
                 type="file"
                 id="image"
@@ -200,7 +391,8 @@
               />
             </div>
           </div>
-          <button class="formbold-btn">Enrégistrer</button>
+
+          <button type="submit" class="formbold-btn">Enregistrer</button>
         </form>
       </div>
     </div>

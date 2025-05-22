@@ -1,0 +1,95 @@
+<!-- templates/controler/controler_form.html -->
+<form method="post" enctype="multipart/form-data" class="form-enregistrement">
+  {% csrf_token %}
+
+  <h2>Enregistrement controleur</h2>
+
+  <div class="form-group">
+    <label for="{{ form.prenom.id_for_label }}"><strong>Prénom</strong></label>
+    {{ form.prenom }} {{ form.prenom.errors }}
+  </div>
+
+  <div class="form-group">
+    <label for="{{ form.nom.id_for_label }}"><strong>Nom</strong></label>
+    {{ form.nom }} {{ form.nom.errors }}
+  </div>
+
+  <div class="form-group">
+    <label for="{{ form.email.id_for_label }}"><strong>Email</strong></label>
+    {{ form.email }} {{ form.email.errors }}
+  </div>
+  <div class="form-group">
+    <label for="{{ form.email.id_for_label }}"><strong>Adresse</strong></label>
+    {{ form.adresse }} {{ form.adresse.errors }}
+  </div>
+  <div class="form-group">
+    <label for="{{ form.email.id_for_label }}"
+      ><strong>Telephone</strong></label
+    >
+    {{ form.telephone }} {{ form.telephone.errors }}
+  </div>
+  <div class="form-group">
+    <label for="{{ form.password.id_for_label }}"
+      ><strong>Definir un mote de passe</strong></label
+    >
+    {{ form.password }} {{ form.password.errors }}
+  </div>
+
+  <button type="submit" class="submit-btn">Enregistrer</button>
+</form>
+
+<style>
+  .form-enregistrement {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+  }
+
+  .form-group label strong {
+    font-weight: bold;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="file"],
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .submit-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 20px auto 0;
+  }
+
+  .submit-btn:hover {
+    background-color: #45a049;
+  }
+</style>

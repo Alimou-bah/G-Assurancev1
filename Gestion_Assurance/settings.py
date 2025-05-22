@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'users',
     'agents',
     'courtiers',
+    'controleur',
 ]
 
 MIDDLEWARE = [
@@ -155,3 +156,10 @@ DEFAULT_FROM_EMAIL = 'ADMIN_EMAIL'
 AUTH_USER_MODEL = 'users.User'
 #LOGIN_REDIRECT_URL='/agents/list/'
 LOGIN_REDIRECT_URL='list_agent'
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'controleur.backends.EmailBackend',  # adapte le nom du fichier si besoin
+]
+

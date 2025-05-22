@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('users.urls')),
     path('agents/', include('agents.urls')),
     path('courtiers/', include('courtiers.urls')),
+    path('controleur/', include('controleur.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, 
